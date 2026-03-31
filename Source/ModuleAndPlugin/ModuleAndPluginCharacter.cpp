@@ -7,7 +7,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
-#include "MySpartaLog/TestActor.h"
+#include "TestActor.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
@@ -91,6 +91,12 @@ void AModuleAndPluginCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
+}
+
+void AModuleAndPluginCharacter::BeginPlay()
+{
+
+		GetWorld()->SpawnActor(ATestActor::StaticClass());
 }
 
 void AModuleAndPluginCharacter::Move(const FInputActionValue& Value)
